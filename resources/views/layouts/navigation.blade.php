@@ -23,6 +23,10 @@
                                 {{ __('Mon profil') }}
                             </x-nav-link>
 
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                {{ __('Ma page Admin') }}
+                            </x-nav-link>
+
                         @else
 
                             <!-- ****** Lien vers la page d'accueil -->
