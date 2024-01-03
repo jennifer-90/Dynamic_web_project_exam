@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('event_name');
-            $table->date('date');
-            $table->time('time');
-            $table->string('location');
-            $table->text('location_description');
+            $table->date('date'); //Date de l'évènement
+            $table->time('time'); //Heure de l'évènement
+            $table->string('location'); // Lieu de l'évènement
+            $table->text('location_description'); //Description du lieu de l'évènement
             $table->integer('min_people');
             $table->integer('max_people');
             $table->string('type'); // outdoor or indoor
