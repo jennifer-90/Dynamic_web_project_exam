@@ -14,12 +14,68 @@
 @endsection
 
 @section('content')
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
+                    <!-- Afficher un message de succès -->
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
+                    <!-- FORMULAIRE DE MODIFICATION -->
+
+
+                    <div>
+                        @foreach($users as $user)
+                            <form method="post" action="{{ route('admin.updateUser', ['id' => $user->id]) }}" class="edit-form" data-user-id="{{ $user->id }}" style="display: none;">
+
+                                @csrf
+
+                                <!-- Nom -->
+                                <div>
+                                    <x-input-label for="name_{{ $user->id }}" :value="__('Nom')"/>
+                                    <x-text-input id="name_{{ $user->id }}" name="name_{{ $user->id }}" type="text" class="mt-1 block w-full"
+                                                  :value="$user->name" disabled/>
+                                </div>
+
+                                <!-- Email -->
+                                <div>
+                                    <x-input-label for="email_{{ $user->id }}" :value="__('Email')"/>
+                                    <x-text-input id="email_{{ $user->id }}" name="email_{{ $user->id }}" type="email" class="mt-1 block w-full"
+                                                  :value="$user->email" disabled/>
+                                </div>
+
+                                <!-- Modif role -->
+
+                                <div>
+                                    <x-input-label for="role_{{ $user->id }}" :value="__('Role')"/>
+                                    <select id="role_{{ $user->id }}" name="role" class="mt-1 block w-full" required>
+                                        <option value="Logged-in-user" @if($user->role == 'Logged-in-user') selected @endif>Utilisateur connecté</option>
+                                        <option value="Admin" @if($user->role == 'Admin') selected @endif>Administrateur</option>
+                                        <option value="Supervisor" @if($user->role == 'Supervisor') selected @endif>Superviseur</option>
+                                    </select>
+                                </div>
+
+                                <br>
+
+                                <x-primary-button>>> Enregistrer</x-primary-button>
+                            </form>
+                        @endforeach
+                    </div>
+
+
+                    <br>
+                    <hr class="my-8">
+                    <!-- FIN DU FORMULAIRE DE MODIFICATION -->
+
+
+                    <!-- AFFICHAGE DES USERS -->
                     <!--EN TETE-->
                     <table class="min-w-full bg-white border border-gray-300">
                         <thead>
@@ -48,9 +104,9 @@
                                 <td class="py-2 px-2 border-b">@if($user->role == 'Logged-in-user')
                                         Utilisateur connecté
                                     @elseif($user->role == 'Admin')
-                                        Administrateur
+                                        Administrateur &#128081;
                                     @elseif($user->role == 'Supervisor')
-                                        Superviseur
+                                        Superviseur &#129352;
                                     @else
                                         Invité
                                     @endif
@@ -82,68 +138,26 @@
                     </table>
 
 
-                    <br><hr class="my-8"><br>
-                    <!-- FORMULAIRE DE MODIFICATION -->
-                    <div>
-                        @foreach($users as $user)
-
-                            <!-- Modification 4: Ajout d'une classe et de l'attribut data-user-id -->
-                            <form method="post" action="{{ route('admin.updateUser', ['user' => $user->id]) }}"
-                                  class="edit-form" data-user-id="{{ $user->id }}" style="display: none;">
-
-                                @csrf
-                                @method('post')
-
-                                <!-- Modif nom -->
-                                <div>
-                                    <x-input-label for="name_{{ $user->id }}" :value="__('Nom')"/>
-                                    <x-text-input id="name_{{ $user->id }}" name="name_{{ $user->id }}" type="text" class="mt-1 block w-full"
-                                                  :value="old('name_' . $user->id, $user->name)" required autofocus
-                                                  autocomplete="name"/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('name_' . $user->id)"/>
-                                </div>
-
-                                <!-- Modif email -->
-                                <div>
-                                    <x-input-label for="email_{{ $user->id }}" :value="__('Email')"/>
-                                    <x-text-input id="email_{{ $user->id }}" name="email_{{ $user->id }}" type="email" class="mt-1 block w-full"
-                                                  :value="old('email_' . $user->id, $user->email)" required autocomplete="username"/>
-                                    <x-input-error class="mt-2" :messages="$errors->get('email_' . $user->id)"/>
-                                </div>
-
-                                <!-- Modif role -->
-                                <div>
-                                    <x-input-label for="role_{{ $user->id }}" :value="__('Role')" />
-                                    <x-text-input id="role_{{ $user->id }}" name="role_{{ $user->id }}" :value="old('role_' . $user->id, $user->role)" />
-                                </div>
-
-                                <br>
-
-                                <x-primary-button>>> Enregistrer</x-primary-button>
-                            </form>
-                        @endforeach
-                    </div>
-                    <!-- FIN DU FORMULAIRE DE MODIFICATION -->
-
-
-
-                    <!-- Afficher un message de succès -->
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-
-
 
                     <script>
+
+                        $(document).ready(function () {
+                            // Masquer tous les formulaires d'édition lors du chargement de la page
+                            $('.edit-form').hide();
+                        });
+
+
                         function showEditForm(userId) {
                             console.log('showEditForm called for userId:', userId);
 
+                            // Masquer tous les formulaires d'édition
                             $('.edit-form').hide();
+
+                            // Afficher le formulaire d'édition spécifique à l'utilisateur en utilisant l'ID
                             $('.edit-form[data-user-id="' + userId + '"]').show();
                         }
                     </script>
+
 
                 </div>
             </div>

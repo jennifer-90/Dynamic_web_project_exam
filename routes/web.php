@@ -17,34 +17,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*---HOME---*/
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
+/*---TABLEAU DE BORD _ PICTURES ---*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+/*---LES EVENEMENTS---*/
 Route::middleware('auth')->group(function () {
-
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
 });
 
-
-
+/*---ADMIN---*/
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/admin', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.index');
-
-    Route::post('/admin/update/{user}', [UserController::class, 'updateUser'])->name('admin.updateUser');
+    Route::post('/admin/update/{id}', [UserController::class, 'updateUser'])->name('admin.updateUser');
 });
 
-
-
-
+/*---MODIF DE SON PROFIL---*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
