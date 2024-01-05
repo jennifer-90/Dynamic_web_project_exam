@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +21,29 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/events/{event}', [EventController::class, 'show']);
+    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+});
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/admin', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.index');
+
+    Route::post('/admin/update/{user}', [UserController::class, 'updateUser'])->name('admin.updateUser');
+});
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +51,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

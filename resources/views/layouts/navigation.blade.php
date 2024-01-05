@@ -23,21 +23,31 @@
                                 {{ __('Mon profil') }}
                             </x-nav-link>
 
+                            <!-- ****** Lien vers la page Admin-->
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                {{ __('Ma page Admin') }}
+                            </x-nav-link>
+
+                            <!-- ****** Lien vers la page évènements -->
+                            <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
+                                {{ __('Les évènements') }}
+                            </x-nav-link>
+
                         @else
 
                             <!-- ****** Lien vers la page d'accueil -->
                             <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                                {{ __('Home') }}
+                                {{ __('Accueil') }}
                             </x-nav-link>
 
                             <!-- ****** Lien vers la page login -->
                             <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                                {{ __('Login') }}
+                                {{ __('Connexion') }}
                             </x-nav-link>
 
                             <!-- ****** Lien vers la page register -->
                             <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                                {{ __('Register') }}
+                                {{ __('S\'enregistrer') }}
                             </x-nav-link>
 
                         @endauth
@@ -73,7 +83,7 @@
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
                                                  onclick="event.preventDefault(); this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Se déconnecter') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>

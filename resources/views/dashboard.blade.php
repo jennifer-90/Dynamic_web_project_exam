@@ -1,17 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
+@section('header')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Mes photos') }}
+    </h2>
+
+    <p class="mt-1 text-sm text-gray-600">
+        {{ __("Votre galerie visuelle, un espace dédié à votre créativité. Cette page est votre
+        toile numérique pour partager vos moments les plus précieux, vos paysages les plus époustouflants et vos
+        sourires les plus éclatants. Imaginez un album vivant, où chaque image raconte une histoire et chaque clic crée des souvenirs partagés. Partagez vos chefs-d'œuvre, recevez des éloges chaleureux et créez des connexions à travers des pixels. C'est votre espace pour illuminer le monde avec vos éclats de bonheur.") }}
+    </p>
+@endsection
+
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    {{ __("Ajoute tes photos ici ! ") }}
                 </div>
+
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
+

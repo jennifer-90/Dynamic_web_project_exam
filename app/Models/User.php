@@ -48,4 +48,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime', // Converti cet attribut en type Datetime
         'password' => 'hashed', //Indique qu'il s'agit d'un mot de passe haché
     ];
+
 }
