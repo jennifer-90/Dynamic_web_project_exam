@@ -30,7 +30,9 @@ Route::get('/dashboard', function () {
 
 /*---LES EVENEMENTS---*/
 Route::middleware('auth')->group(function () {
-    Route::get('/events/{event}', [EventController::class, 'show']);
+    Route::get('/events/create', [EventController::class, 'create'])->name('event.create');
+    Route::post('/events', [EventController::class, 'store'])->name('event.store');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('event.show');
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
 });
 
