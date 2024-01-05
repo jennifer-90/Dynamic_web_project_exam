@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +28,21 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
     Route::get('/events/{event}', [EventController::class, 'show']);
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
 });
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/admin', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.index');
+
+    Route::post('/admin/update/{user}', [UserController::class, 'updateUser'])->name('admin.updateUser');
+});
+
+
 
 
 Route::middleware('auth')->group(function () {
