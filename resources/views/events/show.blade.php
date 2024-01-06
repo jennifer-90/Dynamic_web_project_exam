@@ -22,6 +22,7 @@
                     <p>Nombre maximum de personnes : {{ $event->max_people }}</p>
                     <p>Type d'événement : {{ $event->type }}</p>
                     <p>Type de participants : {{ $event->people_type }}</p>
+                    <p>Créateur : {{ $event->creator->name }}</p><!-- Ne fonctionne pas encore -->
                     <br>
                         <x-primary-button>
                             <a href="{{  route('events.index') }}">

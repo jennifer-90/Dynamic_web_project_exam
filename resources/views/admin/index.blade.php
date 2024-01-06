@@ -6,10 +6,7 @@
     </h2>
 
     <p class="mt-1 text-sm text-gray-600">
-        {{ __("Bienvenue sur notre page d'administration, le cœur battant de notre communauté !Ici, nos
-        administrateurs ont le pouvoir magique de personnaliser et d'optimiser l'expérience de chaque utilisateur.
-        Grâce à cette fonctionnalité, nos administrateurs peuvent apporter des changements bienveillants,
-        répondant aux besoins spécifiques de chacun. ") }}
+        {{ __("Bienvenue sur notre page d'administration, le cœur battant de notre communauté ! Ici, nos administrateurs ont le pouvoir magique de personnaliser et d'optimiser l'expérience de chaque utilisateur. Grâce à cette fonctionnalité, nos administrateurs peuvent apporter des changements bienveillants, répondant aux besoins spécifiques de chacun. Il est important de noter que, même si nos administrateurs détiennent des pouvoirs étendus, certaines limitations s'appliquent pour assurer la stabilité et la sécurité de notre communauté. Par exemple, un administrateur ne peut pas modifier son propre statut, car cela garantit l'intégrité du système et maintient la clarté des rôles au sein de notre communauté. Nous croyons en une gestion équitable et transparente, assurant ainsi une expérience harmonieuse pour tous nos utilisateurs. Merci de faire partie de notre communauté ! 🌟") }}
     </p>
 @endsection
 
@@ -21,10 +18,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <!-- Afficher un message de succès -->
                     @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <!-- Afficher un message d'erreur -->
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
                         </div>
                     @endif
 

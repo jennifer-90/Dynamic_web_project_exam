@@ -33,7 +33,9 @@ class EventController extends Controller
 
         $validatedData = $request->validated();
 
-        $event = new Event([
+        $user = auth()->user();
+
+        $event = $user->events()->create([
             'event_name'            => $validatedData['event_name'],
             'date'                  => $validatedData['date'],
             'time'                  => $validatedData['time'],
@@ -45,7 +47,7 @@ class EventController extends Controller
             'people_type'           => $validatedData['people_type'],
         ]);
 
-        $event->save();
+        $event->users()->attach(auth()->user());
 
         return redirect()->route('event.show', ['event' => $event->id])->with('success', 'Event created successfully');
 

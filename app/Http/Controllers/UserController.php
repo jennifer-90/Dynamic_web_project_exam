@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -22,34 +23,30 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
 
-        $request->validate([
-            'role' => 'required|in:Logged-in-user,Admin,Supervisor',
-        ]);
+        // Vérifier si l'utilisateur connecté peut modifier le rôle
+        if ($this->canChangeRole($user)) {
+            $request->validate([
+                'role' => 'required|in:Logged-in-user,Admin,Supervisor',
+            ]);
 
-        $user->update([
-            'role' => $request->input('role'),
-        ]);
+            $user->update([
+                'role' => $request->input('role'),
+            ]);
 
-        return redirect()->back()->with('success', 'Le rôle a été mis à jour avec succès.');
-    }
-
-    /*
-     *   public function updateUser(ProfileUpdateRequest $request): RedirectResponse {
-
-        $usersData = $request->input('users', []);
-
-        foreach ($usersData as $userId => $userData) {
-            $user = User::findOrFail($userId);
-
-            $user->name = $userData['name'];
-            $user->email = $userData['email'];
-            $user->role = $userData['role'];
-            $user->save();
+            return redirect()->back()->with('success', '🟢 Le rôle a été mis à jour avec succès 🟢!');
+        } else {
+            return redirect()->back()->with('error', '⛔ Vous n\'avez pas la permission de modifier votre propre rôle ⛔ !');
         }
-
-        return redirect()->back()->with('success', 'Les profils ont été mis à jour avec succès.');
     }
-     * */
 
+    private function canChangeRole(User $user): bool
+    {
+        // Récupérer l'utilisateur connecté
+        $loggedInUser = Auth::user();
+
+        // Vérifier si l'utilisateur connecté peut modifier le rôle
+        // En supposant que les administrateurs ne peuvent pas changer leur propre rôle
+        return $loggedInUser->id !== $user->id || $loggedInUser->role !== 'Admin';
+    }
 
 }
