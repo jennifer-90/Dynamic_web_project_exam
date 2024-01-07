@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         //link table
-        Schema::create('user__events', function (Blueprint $table) {
+        Schema::create('user_events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('event_id')->constrained('events');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user__events');
+        Schema::dropIfExists('user_events');
     }
 };

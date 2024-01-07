@@ -23,10 +23,12 @@
                                 {{ __('Mon profil') }}
                             </x-nav-link>
 
-                            <!-- ****** Lien vers la page Admin-->
-                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                                {{ __('Ma page Admin') }}
-                            </x-nav-link>
+                            @if(Auth::user()->role === 'Admin')
+                                <!-- ****** Lien vers la page Admin-->
+                                <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                    {{ __('Ma page Admin') }}
+                                </x-nav-link>
+                            @endif
 
                             <!-- ****** Lien vers la page évènements -->
                             <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">

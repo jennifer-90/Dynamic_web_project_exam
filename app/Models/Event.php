@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
@@ -28,4 +30,15 @@ class Event extends Model
        'status', //Status de l'évènement (actif ou inactif)
        'user_id', //Clé étrangère liée à la table 'users'
     ];
+
+
+    public function users(): BelongsToMany {
+        return $this->belongsToMany(User::class, 'user_events')->withTimestamps();
+    }
+
+    public function creator(): BelongsTo {
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
+    }
+
+
 }

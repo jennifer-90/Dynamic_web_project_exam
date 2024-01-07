@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -17,34 +16,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*---HOME---*/
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('home')->middleware('guest');
 
-
+/*---TABLEAU DE BORD _ PICTURES ---*/
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard')->middleware('auth');
 
 
+/*---LES EVENEMENTS---*/
 Route::middleware('auth')->group(function () {
-
-    Route::get('/events/{event}', [EventController::class, 'show']);
+    Route::get('/events/create', [EventController::class, 'create'])->name('event.create');
+    Route::post('/events', [EventController::class, 'store'])->name('event.store');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('event.show');
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
 });
 
-
-
-Route::group(['middleware' => ['auth']], function () {
-
-    Route::get('/admin', [\App\Http\Controllers\UserController::class, 'index'])->name('admin.index');
-
-    Route::post('/admin/update/{user}', [UserController::class, 'updateUser'])->name('admin.updateUser');
+/*---ADMIN---*/
+Route::group(['middleware' => ['auth','admin' ]], function () {
+    Route::get('/admin', [UserController::class, 'index'])->name('admin.index');
+    Route::post('/admin/update/{id}', [UserController::class, 'updateUser'])->name('admin.updateUser');
 });
 
-
-
-
+/*---MODIF DE SON PROFIL---*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

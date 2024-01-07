@@ -22,7 +22,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
@@ -30,7 +30,27 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+
+        $validatedData = $request->validated();
+
+        $user = auth()->user();
+
+        $event = $user->events()->create([
+            'event_name'            => $validatedData['event_name'],
+            'date'                  => $validatedData['date'],
+            'time'                  => $validatedData['time'],
+            'location'              => $validatedData['location'],
+            'location_description'  => $validatedData['location_description'],
+            'min_people'            => $validatedData['min_people'],
+            'max_people'            => $validatedData['max_people'],
+            'type'                  => $validatedData['type'],
+            'people_type'           => $validatedData['people_type'],
+        ]);
+
+        $event->users()->attach(auth()->user());
+
+        return redirect()->route('event.show', ['event' => $event->id])->with('success', 'Event created successfully');
+
     }
 
     /**
@@ -38,7 +58,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('events.show', compact('event'));
     }
 
     /**
