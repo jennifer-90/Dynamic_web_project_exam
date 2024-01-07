@@ -44,8 +44,6 @@ class UserController extends Controller
         // Récupérer l'utilisateur connecté
         $loggedInUser = Auth::user();
 
-        // Vérifier si l'utilisateur connecté peut modifier le rôle
-        // En supposant que les administrateurs ne peuvent pas changer leur propre rôle
         return $loggedInUser->id !== $user->id || $loggedInUser->role !== 'Admin';
     }
 
