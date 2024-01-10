@@ -14,58 +14,75 @@ les concepts les plus récents du framework Laravel.
 
 
  ---
-## B - Comment l'installer et le tester:
+## B - Prérequis:
 
 >> Assurez-vous que votre machine dispose des éléments suivants :
 - PHP installé (https://www.php.net/) - version minimum: 8.1+
 - Composer installé (https://getcomposer.org/)
 - Un serveur de base de données (recommandation: MySQL) installé et configuré.
 => pour windows = WAMP - version minimum: 8.0.31
-- Node.js installé (https://nodejs.org/en/download)
+- Node.js & npm doivent être installés
 
 
-### 1. Cloner le projet depuis Github
+## C - Comment l'installer et le tester:
+
+
+Assurez-vous que WampServer soit démarré. <br><br>Ensuite, accédez à votre dossier "www" de Wamp64 (ou son équivalent 
+selon le serveur utilisé) et créer un dossier "mingleparent".
+
+Dans votre terminal ou Git Bash, une fois que vous êtes dans le dossier "www" exécutez les commandes suivantes :
+
+
+### 1. Créer un dossier "mingleparent" et déplacez-vous dans ce dossier via la commande suivante:
+```bash
+git cd mingleparent
+```
+
+### 2. Cloner le projet depuis Github
 ```bash
 git clone https://github.com/jennifer-90/Dynamic_web_project_exam.git .
 ```
 *--> Récupère une copie du projet depuis GitHub sur votre machine locale.*
 
-### 2. Installer les dépendances avec Composer
+### 3. Installer les dépendances avec Composer
 ```bash 
 composer install 
 ```
 *--> Composer est un gestionnaire de dépendances pour PHP. Cette commande installe toutes les bibliothèques
 nécessaires au projet.*
 
-### 3. Installer
+### 4. Installer (vous pouvez lancer les commandes en même temps)
 ```bash 
 npm install
 npm run build
 ```
 *--> Installe les dépendances Javascript & regroupes les actifs de l'application*
 
-### 4. Copier le fichier .env.example et renommer le ".env"
+### 5. Copier le fichier .env.example et renommer le ".env"
 ```bash
 cp .env.example .env
 ```
 *--> Créé une copie du fichier de configuration par défaut .env.example sous le nom .env.*
-### 5. Générer la clé d'application
+### 6. Générer la clé d'application
 ```bash
 php artisan key:generate 
 ```
 *--> Laravel utilise une clé d'application pour la sécurité. Cette commande génère une nouvelle clé dans le fichier .
 env.*
-### 6. Configurer la db
+### 7. Configurer la db avec vos information dans le fichier .env, exemple pour un serveur local:
 ``` 
-DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD  
+DB_HOST = 127.0.0.1  (Adresse d'hébergement de la base de données)
+DB_DATABASE = mingleparent (Le nom de la base de données)
+DB_USERNAME = root (Le nom d'utilisateur de la base de données)
+DB_PASSWORD =  (Le mots-de-passes d'utilisateur de la base de données, dans l'exemple il est vide) 
 ```
-### 7. Effectuer la migration db
+### 8. Effectuer la migration db & suivez les instructions (Mettre "yes" pour la création de la db)
 ```bash
 php artisan migrate 
 ```
 *--> La migration crée les tables nécessaires dans la base de données.*
 
-### 8. Démarrer le serveur de développement laravel
+### 9. Démarrer le serveur de développement laravel
 ```bash
 php artisan serve 
 ```
