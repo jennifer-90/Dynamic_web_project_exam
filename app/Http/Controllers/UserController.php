@@ -20,6 +20,7 @@ class UserController extends Controller
 
 
     public function updateUser(Request $request, $id): RedirectResponse {
+        /*PAGE ADMIN*/
 
         $user = User::findOrFail($id);
 

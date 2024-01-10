@@ -42,6 +42,11 @@
                                 {{ __('Accueil') }}
                             </x-nav-link>
 
+                            <!-- ****** Lien vers la page event -->
+                            <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
+                                {{ __('evenements') }}
+                            </x-nav-link>
+
                             <!-- ****** Lien vers la page login -->
                             <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                                 {{ __('Connexion') }}

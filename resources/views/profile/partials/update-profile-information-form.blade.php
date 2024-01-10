@@ -59,6 +59,8 @@
                     class="text-sm text-gray-600"
                 >{{ __('Enregistré.') }}</p> <!-- Message après avoir cliqué sur le bouton sauvegarder-->
             @endif
+
+            <x-primary-button><a href="{{ route('export') }}">Export</a></x-primary-button>
         </div>
     </form>
 </section>

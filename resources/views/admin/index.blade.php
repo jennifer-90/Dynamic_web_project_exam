@@ -60,7 +60,6 @@
                                     <x-input-label for="role_{{ $user->id }}" :value="__('Role')"/>
                                     <select id="role_{{ $user->id }}" name="role" class="mt-1 block w-full" required>
                                         <option value="Logged-in-user" @if($user->role == 'Logged-in-user') selected @endif>Utilisateur connecté</option>
-                                        <option value="Admin" @if($user->role == 'Admin') selected @endif>Administrateur</option>
                                         <option value="Supervisor" @if($user->role == 'Supervisor') selected @endif>Superviseur</option>
                                     </select>
                                 </div>

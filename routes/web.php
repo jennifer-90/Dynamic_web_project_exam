@@ -27,12 +27,14 @@ Route::get('/dashboard', function () {
 })->name('dashboard')->middleware('auth');
 
 
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
 /*---LES EVENEMENTS---*/
 Route::middleware('auth')->group(function () {
     Route::get('/events/create', [EventController::class, 'create'])->name('event.create');
     Route::post('/events', [EventController::class, 'store'])->name('event.store');
     Route::get('/events/{event}', [EventController::class, 'show'])->name('event.show');
-    Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
 });
 
 /*---ADMIN---*/
@@ -46,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/export', [ProfileController::class, 'exportJson'])->name('export');
 });
 
 require __DIR__ . '/auth.php';
