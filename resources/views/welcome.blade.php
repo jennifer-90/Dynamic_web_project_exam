@@ -20,6 +20,13 @@
 <x-guest-layout>
 
     <div>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div style="text-align: center">
             <h1>MINGLEPARENT</h1><br>
 
