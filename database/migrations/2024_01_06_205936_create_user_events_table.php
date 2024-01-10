@@ -14,7 +14,7 @@ return new class extends Migration
         //link table
         Schema::create('user_events', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('event_id')->constrained('events');
             $table->timestamps();
         });

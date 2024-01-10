@@ -14,7 +14,7 @@ return new class extends Migration
         //link table
         Schema::create('user_local_services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('local_service_id')->constrained('local_services');
             $table->timestamps();
         });
