@@ -17,28 +17,33 @@ les concepts les plus récents du framework Laravel.
 ## B - Comment l'installer et le tester:
 
 >> Assurez-vous que votre machine dispose des éléments suivants :
-- PHP installé (https://www.php.net/)
+- PHP installé (https://www.php.net/) - version minimum: 8.1+
 - Composer installé (https://getcomposer.org/)
-- Un serveur de base de données (par exemple, MySQL) installé et configuré.
+- Un serveur de base de données (recommandation: MySQL) installé et configuré.
+=> pour windows = WAMP - version minimum: 8.0.31
+- Node.js installé (https://nodejs.org/en/download)
 
 
 ### 1. Cloner le projet depuis Github
 ```bash
-git clone https://github.com/jennifer-90/Dynamic_web_project_exam.git 
+git clone https://github.com/jennifer-90/Dynamic_web_project_exam.git .
 ```
 *--> Récupère une copie du projet depuis GitHub sur votre machine locale.*
 
-### 2. Accéder au répertoire du projet
-```bash
-cd mingleparent 
-```
-*--> Vous place dans le répertoire du projet fraîchement cloné.*
-### 3. Installer les dépendances avec Composer
+### 2. Installer les dépendances avec Composer
 ```bash 
 composer install 
 ```
-*--> Composer est un gestionnaire de dépendances pour PHP. Cette commande installe toutes les bibliothèques 
+*--> Composer est un gestionnaire de dépendances pour PHP. Cette commande installe toutes les bibliothèques
 nécessaires au projet.*
+
+### 3. Installer
+```bash 
+npm install
+npm run build
+```
+*--> Installe les dépendances Javascript & regroupes les actifs de l'application*
+
 ### 4. Copier le fichier .env.example et renommer le ".env"
 ```bash
 cp .env.example .env
@@ -54,22 +59,26 @@ env.*
 ``` 
 DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD  
 ```
-
-### 7. Démarrer le serveur de développement laravel
-```bash
-php artisan serve 
-```
-*--> Lance un serveur de développement Laravel local*
-### 8. Effectuer la migration db
+### 7. Effectuer la migration db
 ```bash
 php artisan migrate 
 ```
 *--> La migration crée les tables nécessaires dans la base de données.*
 
+### 8. Démarrer le serveur de développement laravel
+```bash
+php artisan serve 
+```
+*--> Lance un serveur de développement Laravel local*
+
+
  ---
 
 ## C - Utilisation de l'Interface
->> Le serveur sera accessible à l'adresse indiquée dans la console (par défaut : http://127.0.0.1:8000/).
+>> L'interface du site sera accessible à l'adresse indiquée dans la console (par défaut : http://127.0.0.1:8000/).
 
-    Ouvrez votre navigateur web et accédez à l'URL du serveur de développement.
+=> Ouvrez votre navigateur web et accédez à l'URL du serveur de développement.<br>
     Suivez les instructions pour créer un nouvel utilisateur et explorer les fonctionnalités de l'interface.
+
+- Le premier utilisateur qui sera créé aura le rôle "Admin"
+- Les suivants auront un rôle par défaut "Utilisateur connecté"
