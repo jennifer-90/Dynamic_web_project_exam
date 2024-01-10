@@ -18,7 +18,7 @@
                         <input type="text" name="event_name" id="event_name" class="border rounded w-full py-2 px-3 mb-2"><br><br>
 
                         <label for="date">Date de l'évènement :</label><br>
-                        <input type="date" name="date" id="date" class="border rounded w-full py-2 px-3 mb-2"><br><br>
+                        <input type="date" name="date" id="date" class="border rounded w-full py-2 px-3 mb-2" min="{{ date('Y-m-d') }}"><br><br>
 
                         <label for="time">Heure de l'évènement (format 24 heures) :</label><br>
                         <input type="time" name="time" id="time" class="border rounded w-full py-2 px-3 mb-2"><br><br>
@@ -33,7 +33,8 @@
                         <input type="number" name="min_people" id="min_people" class="border rounded w-full py-2 px-3 mb-2" min="1"><br><br>
 
                         <label for="max_people">Nombre maximum de personnes :</label><br>
-                        <input type="number" name="max_people" id="max_people" class="border rounded w-full py-2 px-3 mb-2" min="1"><br><br>
+                        <input type="number" name="max_people" id="max_people" class="border rounded w-full py-2 px-3
+                         mb-2"><br><br>
 
                         <label for="type">Type d'évènement :</label><br>
                         <select name="type" id="type" class="border rounded w-full py-2 px-3 mb-2">

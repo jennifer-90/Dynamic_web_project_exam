@@ -88,7 +88,7 @@
                             <th class="py-2 px-2 border-b">Role</th>
                             <th class="py-2 px-2 border-b">Statut</th>
                             <th class="py-2 px-2 border-b">Date d'inscription</th>
-                            <th class="py-2 px-2 border-b">Dernière modification</th>
+                            <th class="py-2 px-2 border-b">Dernière connexion</th>
                             <th class="py-2 px-2 border-b">MODIFIER</th>
                             <th class="py-2 px-2 border-b">SUPPRIMER</th>
                             <th class="py-2 px-2 border-b">#</th>
@@ -114,8 +114,9 @@
                                     @endif
                                 </td>
                                 <td class="py-2 px-2 border-b">{{ ($user->user_status == 1) ? 'actif':'non-actif' }}</td>
-                                <td class="py-2 px-2 border-b">{{ $user->created_at->format('d/m/Y - H:i') }}</td>
-                                <td class="py-2 px-2 border-b">{{ $user->updated_at->format('d/m/Y - H:i') }}</td>
+                                <td class="py-2 px-2 border-b">{{ $user->created_at->timezone('Europe/Brussels')->format('d/m/Y - H:i') }}</td>
+                                <td class="py-2 px-2 border-b">{{ $user->lastlogin ? date('d/m/Y - H:i', strtotime($user->lastlogin)) : '/' }}</td>
+
 
                                 <!------------------------------------------------------------>
                                 <td class="py-2 px-2 border-b">

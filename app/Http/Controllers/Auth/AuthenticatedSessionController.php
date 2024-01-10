@@ -27,9 +27,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $this->authenticated($request, auth()->user());
+
         $username = auth()->user()->name;
 
-        return redirect()->route('dashboard')->with('success', "Bienvenue $username !");
+        return redirect()->route('dashboard')->with('success', "Bienvenue $username ! 😊");
 
     }
 
@@ -43,6 +45,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('success', "Au revoir !");
+        return redirect('/')->with('success', "Au revoir ! 👋");
+    }
+
+    protected function authenticated($request, $user)
+    {
+        // Mettez à jour le champ lastlogin lorsque l'utilisateur est authentifié
+        $user->update(['lastlogin' => now()]);
     }
 }

@@ -89,40 +89,46 @@
                 {{ __('Les évenements:') }}
             </h2>
             <br>
-
-            <table class="min-w-full bg-white border border-gray-300">
-                <thead>
-                <tr>
-                    <th class="py-2 px-2 border-b">Evénement</th>
-                    <th class="py-2 px-2 border-b">Lieu</th>
-                    <th class="py-2 px-2 border-b">Min pers</th>
-                    <th class="py-2 px-2 border-b">Max pers</th>
-                    <th class="py-2 px-2 border-b">Les personnes</th>
-                    <th class="py-2 px-2 border-b">Type</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($events as $event)
-                    <tr>
-                        <td class="py-2 px-2 border-b">{{ $event->event_name }}</td>
-                        <td class="py-2 px-2 border-b">{{ $event->location }}</td>
-                        <td class="py-2 px-2 border-b">{{ $event->min_people }}</td>
-                        <td class="py-2 px-2 border-b">{{ $event->max_people}}</td>
-                        <td class="py-2 px-2 border-b">@if($event->people_type == 'between_parents')
-                                Entre parents
-                            @else
-                                Entre parents et enfants
-                            @endif
-                        </td>
-                        <td class="py-2 px-2 border-b">@if($event->type == 'outdoor')
-                                En plein air
-                            @else
-                                En intérieur
-                            @endif</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <div>
+                @if($events->isEmpty())
+                    <p>Pas d'évènement en perspective... </p>
+                @else
+                    <table class="min-w-full bg-white border border-gray-300">
+                        <thead>
+                        <tr>
+                            <th class="py-2 px-2 border-b">Evénement</th>
+                            <th class="py-2 px-2 border-b">Lieu</th>
+                            <th class="py-2 px-2 border-b">Min pers</th>
+                            <th class="py-2 px-2 border-b">Max pers</th>
+                            <th class="py-2 px-2 border-b">Les personnes</th>
+                            <th class="py-2 px-2 border-b">Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($events as $event)
+                            <tr>
+                                <td class="py-2 px-2 border-b">{{ $event->event_name }}</td>
+                                <td class="py-2 px-2 border-b">{{ $event->location }}</td>
+                                <td class="py-2 px-2 border-b">{{ $event->min_people }}</td>
+                                <td class="py-2 px-2 border-b">{{ $event->max_people}}</td>
+                                <td class="py-2 px-2 border-b">@if($event->people_type == 'between_parents')
+                                        Entre parents
+                                    @else
+                                        Entre parents et enfants
+                                    @endif
+                                </td>
+                                <td class="py-2 px-2 border-b">@if($event->type == 'outdoor')
+                                        En plein air
+                                    @else
+                                        En intérieur
+                                    @endif</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            </div>
         </x-guest-layout>
+
     @endguest
 @endsection

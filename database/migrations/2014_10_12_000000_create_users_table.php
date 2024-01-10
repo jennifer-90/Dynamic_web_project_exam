@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('regisration_date')->useCurrent();
             $table->string('role')->default('Logged-in-user');//Guest - Logged-in-user -Admin - Supervisor
             $table->boolean('user_status')->default(1);//1 = active or 0=inactive
+            $table->timestamp('lastlogin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
