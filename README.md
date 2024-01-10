@@ -35,7 +35,7 @@ Dans votre terminal ou Git Bash, une fois que vous êtes dans le dossier "www" e
 
 ### 1. Créer un dossier "mingleparent" et déplacez-vous dans ce dossier via la commande suivante:
 ```bash
-git cd mingleparent
+cd mingleparent
 ```
 
 ### 2. Cloner le projet depuis Github
