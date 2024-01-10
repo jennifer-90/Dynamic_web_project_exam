@@ -14,15 +14,29 @@ les concepts les plus récents du framework Laravel.
 
 
  ---
-## B - Comment l'installer et le tester:
+## B - Prérequis:
 
 >> Assurez-vous que votre machine dispose des éléments suivants :
 - PHP installé (https://www.php.net/) - version minimum: 8.1+
 - Composer installé (https://getcomposer.org/)
 - Un serveur de base de données (recommandation: MySQL) installé et configuré.
 => pour windows = WAMP - version minimum: 8.0.31
-- Node.js installé (https://nodejs.org/en/download)
+- Node.js & npm doivent être installés
 
+
+## C - Comment l'installer et le tester:
+
+
+Assurez-vous que WampServer soit démarré. <br><br>Ensuite, accédez à votre dossier "www" de Wamp64 (ou son équivalent 
+selon le serveur utilisé) et créer un dossier "mingleparent".
+
+Dans votre terminal ou Git Bash, une fois que vous êtes dans le dossier "www" exécutez les commandes suivantes :
+
+
+### 0. Créer un dossier "mingleparent" et déplacez-vous dans ce dossier via la commande suivante:
+```bash
+git cd mingleparent
+```
 
 ### 1. Cloner le projet depuis Github
 ```bash
@@ -37,7 +51,7 @@ composer install
 *--> Composer est un gestionnaire de dépendances pour PHP. Cette commande installe toutes les bibliothèques
 nécessaires au projet.*
 
-### 3. Installer
+### 3. Installer (vous pouvez lancer les commandes en même temps)
 ```bash 
 npm install
 npm run build
@@ -55,11 +69,14 @@ php artisan key:generate
 ```
 *--> Laravel utilise une clé d'application pour la sécurité. Cette commande génère une nouvelle clé dans le fichier .
 env.*
-### 6. Configurer la db
+### 6. Configurer la db avec vos information dans le fichier .env, exemple pour un serveur local:
 ``` 
-DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD  
+DB_HOST = 127.0.0.1  (Adresse d'hébergement de la base de données)
+DB_DATABASE = mingleparent (Le nom de la base de données)
+DB_USERNAME = root (Le nom d'utilisateur de la base de données)
+DB_PASSWORD =  (Le mots-de-passes d'utilisateur de la base de données, dans l'exemple il est vide) 
 ```
-### 7. Effectuer la migration db
+### 7. Effectuer la migration db & suivez les instructions (Mettre "yes" pour la création de la db)
 ```bash
 php artisan migrate 
 ```
