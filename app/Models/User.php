@@ -26,6 +26,7 @@ class User extends Authenticatable
         'regisration_date', //Date d'inscription de l'utilisateur
         'role',// Logged-in-user - Admin - Supervisor
         'user_status', //actif ou inactif
+        'lastlogin',
     ];
 
     /**

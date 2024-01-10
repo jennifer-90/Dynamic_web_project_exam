@@ -44,7 +44,7 @@
 
                             <!-- ****** Lien vers la page event -->
                             <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
-                                {{ __('evenements') }}
+                                {{ __('Les évenements') }}
                             </x-nav-link>
 
                             <!-- ****** Lien vers la page login -->
