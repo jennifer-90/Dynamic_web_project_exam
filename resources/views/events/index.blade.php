@@ -32,6 +32,8 @@
                         @else
 
                             <!-- DEBUT CALENDRIER -->
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight" >*** NOS EVENEMENTS:</h2><br>
+
                             <div id="calendar"></div><br>
                             <hr>
                             <!-- FIN CALENDRIER -->
