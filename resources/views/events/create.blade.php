@@ -15,7 +15,8 @@
                         @csrf
 
                         <label for="event_name">Nom de l'évènement :</label><br>
-                        <input type="text" name="event_name" id="event_name" class="border rounded w-full py-2 px-3 mb-2"><br><br>
+                        <input type="text" name="event_name" id="event_name" class="border rounded w-full py-2 px-3
+                        mb-2" maxlength="30"><br><br>
 
                         <label for="date">Date de l'évènement :</label><br>
                         <input type="date" name="date" id="date" class="border rounded w-full py-2 px-3 mb-2" min="{{ date('Y-m-d') }}"><br><br>
@@ -27,7 +28,8 @@
                         <input type="text" name="location" id="location" class="border rounded w-full py-2 px-3 mb-2"><br><br>
 
                         <label for="location_description">Description du lieu :</label><br>
-                        <textarea name="location_description" id="location_description" rows="4" class="border rounded w-full py-2 px-3 mb-2"></textarea><br><br>
+                        <textarea name="location_description" id="location_description" rows="4" class="border
+                        rounded w-full py-2 px-3 mb-2"maxlength="300"></textarea><br><br>
 
                         <label for="min_people">Nombre minimum de personnes :</label><br>
                         <input type="number" name="min_people" id="min_people" class="border rounded w-full py-2 px-3 mb-2" min="1"><br><br>

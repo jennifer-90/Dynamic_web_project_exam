@@ -48,9 +48,10 @@ class EventController extends Controller
             'people_type'           => $validatedData['people_type'],
         ]);
 
-        $event->users()->attach(auth()->user());
+        // Utilise syncWithoutDetaching pour s'assurer que l'utilisateur n'est pas ajouté plusieurs fois
+        $event->users()->syncWithoutDetaching(auth()->user());
 
-        return redirect()->route('event.show', ['event' => $event->id])->with('success', 'Event created successfully');
+        return redirect()->route('event.show', ['event' => $event->id])->with('success', '🟢 Votre évènement est créé ! 🟢 ');
 
     }
 
@@ -86,4 +87,22 @@ class EventController extends Controller
     {
         //
     }
+
+    public function participate(Event $event)
+    {
+        // Ajoutez l'utilisateur actuel à la liste des participants de l'événement
+        auth()->user()->events()->attach($event);
+
+        return redirect()->route('event.show', ['event' => $event->id])->with('success', '🟢 Vous participez à cet événement! 🟢');
+    }
+
+    public function detach(Event $event)
+    {
+        auth()->user()->events()->detach($event);
+
+        return redirect()->route('event.show', ['event' => $event->id])
+            ->with('success', '🔴 Vous ne participez plus à cet événement!🔴');
+    }
+
+
 }

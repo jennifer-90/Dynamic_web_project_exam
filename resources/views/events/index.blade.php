@@ -3,11 +3,11 @@
 @auth
     @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Les évenements') }}
+            {{ __('Les évenements 📅') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Bienvenue dans notre espace dédié aux rencontres chaleureuses entre parents solos ! Découvrez des évènements conçus pour vous : des cafés décontractés, des sorties ludiques avec les enfants, et des soirées à thème. Notre objectif : construire une communauté où chaque parent solo se sent soutenu, compris et entouré d'amitié. Participez à des activités qui favorisent des liens durables, partagez vos expériences et trouvez du réconfort dans une communauté comprenant les défis et les joies de la parentalité en solo. Rejoignez-nous pour une vie sociale épanouissante, remplie de soutien et de rires partagés.") }}
+            {{ __("Bienvenue dans notre espace dédié aux rencontres entre parents solos ! Découvrez des évènements conviviaux : cafés détente, sorties ludiques avec les enfants, soirées à thème. Notre but : créer une communauté où chaque parent solo se sent soutenu, compris et entouré d'amitié. Rejoignez-nous pour une vie sociale épanouissante, pleine de soutien et de rires partagés.") }}
         </p>
     @endsection
 @endauth
@@ -56,7 +56,7 @@
                                 @foreach($events as $event)
                                     <tr>
                                         <td class="py-2 px-2 border-b">{{ $event->event_name }}</td>
-                                        <td class="py-2 px-2 border-b">{{ $event->date }}</td>
+                                        <td class="py-2 px-2 border-b">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
                                         <td class="py-2 px-2 border-b">{{ $event->time }}</td>
                                         <td class="py-2 px-2 border-b">{{ $event->location }}</td>
                                         <td class="py-2 px-2 border-b">{{ $event->min_people }}</td>

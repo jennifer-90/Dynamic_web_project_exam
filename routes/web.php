@@ -35,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/events', [EventController::class, 'store'])->name('event.store');
     Route::get('/events/{event}', [EventController::class, 'show'])->name('event.show');
 
+    Route::post('/events/{event}/participate', [EventController::class, 'participate'])->name('events.participate');
+    Route::post('/events/{event}/detach', [EventController::class, 'detach'])
+        ->name('events.detach');
+
 });
 
 /*---ADMIN---*/
