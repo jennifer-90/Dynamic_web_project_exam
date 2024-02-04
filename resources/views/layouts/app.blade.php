@@ -12,10 +12,37 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!--calendrier -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            if (calendarEl) { // Vérifiez si l'élément existe avant de créer le calendrier
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    events: [
+                            @if(isset($events))
+                            @foreach($events as $event)
+                        {
+                            title: '{{ $event->event_name }}',
+                            start: '{{ $event->date }}T{{ $event->time }}',
+                            url: '{{ route('event.show', ['event' => $event->id]) }}'
+                        },
+                        @endforeach
+                        @endif
+                    ]
+                });
+                calendar.render();
+            }
+        });
+    </script>
 
 </head>
 

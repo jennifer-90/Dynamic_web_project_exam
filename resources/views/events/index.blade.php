@@ -30,6 +30,14 @@
                         @if($events->isEmpty())
                             <p>Pas d'évènement en perspective... Deviens l'instigateur, lance le tien ! </p>
                         @else
+
+                            <!-- DEBUT CALENDRIER -->
+                        <h2 class="font-semibold text-xl text-gray-800 leading-tight" >*** NOS EVENEMENTS:</h2><br>
+
+                            <div id="calendar"></div><br>
+                            <hr>
+                            <!-- FIN CALENDRIER -->
+
                             <table class="min-w-full bg-white border border-gray-300">
                                 <thead>
                                 <tr>
@@ -75,11 +83,11 @@
                                 </tbody>
                             </table>
                         @endif
-
                     </div>
                 </div>
             </div>
         </div>
+
     @endauth
 
     @guest
