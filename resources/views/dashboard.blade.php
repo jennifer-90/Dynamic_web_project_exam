@@ -2,13 +2,11 @@
 
 @section('header')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Mes photos') }}
+        {{ __('Mon journal de bord 📖') }}
     </h2>
 
     <p class="mt-1 text-sm text-gray-600">
-        "Votre galerie visuelle, un espace dédié à votre créativité. Cette page est votre
-        toile numérique pour partager vos moments les plus précieux, vos paysages les plus époustouflants et vos
-        sourires les plus éclatants. Imaginez un album vivant, où chaque image raconte une histoire et chaque clic crée des souvenirs partagés. Partagez vos chefs-d'œuvre, recevez des éloges chaleureux et créez des connexions à travers des pixels. C'est votre espace pour illuminer le monde avec vos éclats de bonheur."
+        Le Journal de Bord est votre espace personnel où vous pouvez suivre et gérer vos activités et participations aux événements. C'est comme un carnet virtuel qui conserve toutes les informations importantes concernant les événements auxquels vous avez participé.
     </p>
 @endsection
 
@@ -26,10 +24,59 @@
                         </div>
                     @endif
 
+                    <div class="mt-6">
+                        <h2 class="text-3xl font-bold mb-4">&#128198;&#9200; Mes participations:</h2>
 
-                    {{ __("Ajoute tes photos ici ! ") }}
+                            @if(auth()->user()->events->count() > 0)
+                                <table class="min-w-full border">
+                                    <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b">Mes événements</th>
+                                        <th class="py-2 px-4 border-b">Les dates</th>
+                                        <th class="py-2 px-4 border-b">Participants</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach(auth()->user()->events as $event)
+                                        <tr>
+
+                                            <td class="py-2 px-4 border-b">&#9989;
+                                                <a href="{{ route('event.show', ['event' => $event->id]) }}"
+                                                   class="text-blue-500 underline">
+                                                    {{ $event->event_name }}
+                                                </a>
+                                            </td>
+
+                                            <td class="py-2 px-4 border-b">{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
+
+                                            <td class="py-2 px-4 border-b">
+                                                @if($event->participants->count() > 0)
+                                                    {{ $event->participants->count() }} personne(s)
+                                                @else
+                                                                                        Aucun participant pour le moment.
+                                                @endif
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                            <p class="text-gray-600">
+                                Vous ne participez pas encore à des événements. Rejoignez ou créez une
+                                activité:
+                                <a href="{{ route('events.index') }}" class="text-blue-500 underline">
+                                    <x-primary-button> >> ICI <<</x-primary-button>
+                                </a>
+                            </p>
+
+                        @endif
+                        </div>
+
+                    </div>
+
+
                 </div>
-
             </div>
         </div>
     </div>

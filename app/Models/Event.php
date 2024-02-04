@@ -39,4 +39,11 @@ class Event extends Model
     public function creator(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
+
+    public function participants()
+    {
+        return $this->belongsToMany(User::class, 'user_events')->distinct();
+    }
+
+
 }
