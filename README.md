@@ -91,7 +91,7 @@ php artisan serve
 
  ---
 
-## C - Utilisation de l'Interface
+## D - Utilisation de l'Interface
 >> L'interface du site sera accessible à l'adresse indiquée dans la console (par défaut : http://127.0.0.1:8000/).
 
 => Ouvrez votre navigateur web et accédez à l'URL du serveur de développement.<br>
