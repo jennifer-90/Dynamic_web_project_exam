@@ -49,11 +49,27 @@
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b">Type d'événement</td>
-                        <td class="py-2 px-4 border-b">{{ $event->type }}</td>
+                        <td class="py-2 px-4 border-b">
+                            @if ($event->type == 'outdoor')
+                                En plein air
+                            @elseif ($event->type == 'indoor')
+                                En intérieur
+                            @else
+                                {{ $event->type }} <!-- Au cas où la valeur ne correspond ni à 'outdoor' ni à 'indoor' -->
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b">Type de participants</td>
-                        <td class="py-2 px-4 border-b">{{ $event->people_type }}</td>
+                        <td class="py-2 px-4 border-b">
+                            @if ($event->people_type == 'between_parents')
+                                Entre parents
+                            @elseif ($event->people_type == 'parents_children')
+                                Parents et enfants
+                            @else
+                                {{ $event->people_type }} <!-- Au cas où la valeur ne correspond ni à 'between_parents' ni à 'parents_children' -->
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b">Créateur</td>
