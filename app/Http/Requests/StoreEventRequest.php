@@ -25,7 +25,7 @@ class StoreEventRequest extends FormRequest
             'event_name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z0-9\séèêàùûôëïüÿçÉÈÊÀÙÛÔËÏÜŸÇ\-]*$/'],
             'date' => 'required|date',
             'time' => 'required|date_format:H:i', //H=format 24 heures (00-23).  && i = les minutes (00-59).
-            'location' =>  ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\séèêàùûôëïüÿçÉÈÊÀÙÛÔËÏÜŸÇ\-]*$/'],
+            'location' =>  ['required', 'string', 'max:60', 'regex:/^[a-zA-Z\séèêàùûôëïüÿçÉÈÊÀÙÛÔËÏÜŸÇ\-]*$/'],
             'location_description' => 'required|string',
             'min_people' => 'required|integer|min:1',
             'max_people' => 'required|integer|min:' . $this->input('min_people'), // Max doit être au moins égal à min.

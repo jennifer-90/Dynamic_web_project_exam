@@ -48,7 +48,9 @@
 
                         <label for="location">Lieu :</label><br>
                         <input type="text" name="location" id="location" class="border rounded w-full py-2 px-3 mb-2"
-                               pattern="^[a-zA-Z0-9\séèêàùûôëïüÿçÉÈÊÀÙÛÔËÏÜŸÇ\-]*$" title="Seules les lettres et espaces sont autorisés.">
+                               pattern="^[a-zA-Z0-9\séèêàùûôëïüÿçÉÈÊÀÙÛÔËÏÜŸÇ\-]*$" maxlength="60" title="Seules les
+                               lettres et
+                               espaces sont autorisés.">
                         @error('location')
                         <div class="text-red-500">&#9888;&#65039; {{ $message }}</div>
                         @enderror<br><br>
