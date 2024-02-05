@@ -32,6 +32,7 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
 
+
         $validatedData = $request->validated();
 
         $user = auth()->user();
