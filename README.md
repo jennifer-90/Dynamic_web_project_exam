@@ -18,10 +18,11 @@ les concepts les plus récents du framework Laravel.
 
 >> Assurez-vous que votre machine dispose des éléments suivants :
 - PHP installé (https://www.php.net/) - version minimum: 8.1+
-- Composer installé (https://getcomposer.org/)
+- Composer installé (version minimum: 2.6.5+) (https://getcomposer.org/)
 - Un serveur de base de données (recommandation: MySQL) installé et configuré.
-=> pour windows = WAMP - version minimum: 8.0.31
-- Node.js & npm doivent être installés
+=> pour windows = WAMP - version minimum: 8.0.31+ (https://wampserver.aviatechno.net/)
+- Node.js (version minimum: v18.16.0+) (https://nodejs.org/en/download) & npm (version minimum: 9.5.1+) doivent être 
+  installés
 
 
 ## C - Comment l'installer et le tester:
@@ -40,7 +41,7 @@ cd mingleparent
 
 ### 2. Cloner le projet depuis Github
 ```bash
-git clone https://github.com/jennifer-90/Dynamic_web_project_exam.git .
+git clone https://github.com/jennifer-90/Dynamic_web_project_exam.git -b staging .
 ```
 *--> Récupère une copie du projet depuis GitHub sur votre machine locale.*
 
